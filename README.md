@@ -37,10 +37,6 @@ requirements.txt
 pip install -r requirements.txt
 streamlit run app.py
 
-## 🌱 Future Work
-
-Add camera input, improve accuracy, expand solution database, deploy mobile version
-
 ## 💚 Conclusion
 
 Helps in early detection of plant diseases and supports smart, sustainable farming.
