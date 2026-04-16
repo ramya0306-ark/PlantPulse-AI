@@ -10,7 +10,7 @@ st.set_page_config(page_title="PlantPulse AI", page_icon="🌿")
 @st.cache_resource
 def load_model():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    MODEL_PATH = os.path.join(BASE_DIR, "final_streamlit_model.h5")
+    MODEL_PATH = os.path.join(BASE_DIR, "streamlit_model.h5")
     return tf.keras.models.load_model(MODEL_PATH, compile=False)
 
 model = load_model()
