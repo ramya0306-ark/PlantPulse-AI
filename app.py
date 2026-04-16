@@ -2,12 +2,11 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 from PIL import Image
+import os
 
 st.set_page_config(page_title="PlantPulse AI", page_icon="🌿")
 
 # -------- LOAD MODEL --------
-import os
-
 @st.cache_resource
 def load_model():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -53,9 +52,8 @@ uploaded_file = st.file_uploader("Upload Image", type=["jpg","png","jpeg"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image", width=500)
 
-    # Preprocess
     img = image.resize((224,224))
     img = np.array(img)/255.0
     img = np.expand_dims(img, axis=0)
@@ -65,15 +63,11 @@ if uploaded_file is not None:
         idx = int(np.argmax(pred))
         result = class_names[idx]
 
-        # Show prediction
         st.success(f"✅ Prediction: {result}")
 
-        # Get solution
         solution = solutions.get(
             result,
-            "🌱 General care: Maintain plant hygiene, proper watering, and use organic fertilizers."
+            "🌱 Maintain plant hygiene and proper care."
         )
 
-        # Show solution
         st.warning(f"💡 Solution: {solution}")
-        
